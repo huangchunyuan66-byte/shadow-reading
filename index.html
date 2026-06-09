@@ -1,58 +1,41 @@
 <!DOCTYPE html>
-<!-- saved from url=(0044)file:///Users/yyzyyds/Downloads/index_2.html -->
-<html lang="zh"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Shadow Reading — 英语影子跟读</title>
 <link rel="stylesheet" href="./Shadow Reading — 英语影子跟读_files/tabler-icons.min.css">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #ffffff;
-    --bg2: #f5f5f3;
-    --bg3: #efefec;
-    --text: #1a1a1a;
-    --text2: #555;
-    --text3: #999;
-    --border: rgba(0,0,0,0.12);
-    --border2: rgba(0,0,0,0.22);
-    --info-bg: #e6f1fb;
-    --info-text: #185fa5;
-    --radius: 10px;
-    --radius-sm: 7px;
+    --bg: #ffffff; --bg2: #f5f5f3; --bg3: #efefec; --text: #1a1a1a;
+    --text2: #555; --text3: #999; --border: rgba(0,0,0,0.12);
+    --border2: rgba(0,0,0,0.22); --info-bg: #e6f1fb; --info-text: #185fa5;
+    --accent: #0F6E56; --accent-bg: #E1F5EE;
+    --radius: 10px; --radius-sm: 7px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #1c1c1e;
-      --bg2: #2c2c2e;
-      --bg3: #3a3a3c;
-      --text: #f2f2f7;
-      --text2: #aeaeb2;
-      --text3: #636366;
-      --border: rgba(255,255,255,0.12);
-      --border2: rgba(255,255,255,0.22);
-      --info-bg: #0c2d4a;
-      --info-text: #85b7eb;
+      --bg: #1c1c1e; --bg2: #2c2c2e; --bg3: #3a3a3c; --text: #f2f2f7;
+      --text2: #aeaeb2; --text3: #636366; --border: rgba(255,255,255,0.12);
+      --border2: rgba(255,255,255,0.22); --info-bg: #0c2d4a; --info-text: #85b7eb;
+      --accent-bg: #0a2e20;
     }
   }
   body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg3); color: var(--text); min-height: 100vh; }
 
-  /* Layout */
   .app-header { background: var(--bg); border-bottom: 0.5px solid var(--border); padding: 0 1.5rem; display: flex; align-items: center; height: 56px; gap: 16px; position: sticky; top: 0; z-index: 100; }
   .app-header h1 { font-size: 17px; font-weight: 600; flex: 1; }
   .app-body { max-width: 860px; margin: 0 auto; padding: 1.25rem 1rem 3rem; }
 
-  /* Tabs */
   .tabs { display: flex; gap: 4px; background: var(--bg2); border-radius: var(--radius-sm); padding: 3px; }
   .tab { padding: 6px 14px; border-radius: 6px; border: none; font-size: 13px; cursor: pointer; background: transparent; color: var(--text2); font-family: inherit; display: flex; align-items: center; gap: 6px; transition: all .15s; }
   .tab.active { background: var(--bg); color: var(--text); font-weight: 500; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
   .tab-badge { font-size: 11px; background: var(--info-bg); color: var(--info-text); padding: 1px 6px; border-radius: 10px; }
 
-  /* Filters */
   .filter-row { display: flex; gap: 8px; margin-bottom: 1rem; flex-wrap: wrap; align-items: center; }
   .filter-label { font-size: 13px; color: var(--text2); }
   .chip { padding: 5px 13px; border-radius: 20px; font-size: 12px; cursor: pointer; border: 0.5px solid var(--border2); background: transparent; color: var(--text2); font-family: inherit; transition: all .15s; }
-  .chip.active { font-weight: 500; }
   .chip.c-all.active { background: var(--bg2); color: var(--text); border-color: var(--border2); }
   .chip.c-easy { border-color: #0F6E56; color: #0F6E56; }
   .chip.c-easy.active { background: #0F6E56; color: #fff; }
@@ -61,7 +44,6 @@
   .chip.c-hard { border-color: #A32D2D; color: #A32D2D; }
   .chip.c-hard.active { background: #A32D2D; color: #fff; }
 
-  /* Video list */
   .video-list { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.25rem; }
   .video-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); cursor: pointer; transition: all .15s; }
   .video-item:hover { background: var(--bg2); }
@@ -74,7 +56,6 @@
   .diff-medium { background: #FAEEDA; color: #633806; }
   .diff-hard { background: #FCEBEB; color: #791F1F; }
 
-  /* Player card */
   .player-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 1rem; display: none; }
   .player-wrap { position: relative; width: 100%; padding-top: 56.25%; background: #000; }
   .player-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
@@ -87,7 +68,6 @@
   .spacer { flex: 1; }
   .rec-timer { font-size: 13px; color: var(--text2); font-variant-numeric: tabular-nums; }
 
-  /* Score */
   .score-bar { margin: 0 16px 12px; padding: 14px 16px; background: var(--bg2); border-radius: var(--radius-sm); display: none; }
   .score-bar.visible { display: block; }
   .score-row { display: flex; align-items: center; gap: 14px; }
@@ -95,30 +75,55 @@
   .score-stars { color: #EF9F27; font-size: 18px; letter-spacing: 2px; }
   .score-detail { font-size: 13px; color: var(--text2); margin-top: 3px; }
 
-  /* Subtitles */
-  .subtitle-wrap { padding: 16px 20px 20px; border-top: 0.5px solid var(--border); min-height: 90px; }
-  .sub-nav { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  /* ── Subtitle panel ── */
+  .subtitle-wrap { border-top: 0.5px solid var(--border); }
+  .sub-nav { display: flex; align-items: center; gap: 8px; padding: 10px 16px 8px; flex-wrap: wrap; }
   .sub-nav span { font-size: 12px; color: var(--text3); }
   .sub-nav-btn { background: transparent; border: 0.5px solid var(--border2); border-radius: 6px; padding: 3px 10px; font-size: 12px; cursor: pointer; color: var(--text2); font-family: inherit; }
   .sub-nav-btn:hover { background: var(--bg2); }
-  .subtitle-line { font-size: 17px; line-height: 1.9; color: var(--text); }
-  .subtitle-line.hidden-sub .word { color: transparent; background: var(--bg3); border-radius: 3px; }
-  .word { cursor: pointer; border-radius: 3px; padding: 0 2px; transition: background .1s; }
+
+  .subtitle-scroll { max-height: 320px; overflow-y: auto; padding: 4px 8px 16px; scroll-behavior: smooth; }
+  .subtitle-scroll::-webkit-scrollbar { width: 4px; }
+  .subtitle-scroll::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  .sub-line { padding: 7px 12px; margin: 2px 0; border-radius: 8px; font-size: 14px; line-height: 1.7; color: var(--text3); cursor: pointer; border-left: 3px solid transparent; transition: background .15s, color .15s; }
+  .sub-line:hover { background: var(--bg2); color: var(--text2); }
+  .sub-line.active { font-size: 19px; line-height: 1.85; font-weight: 500; color: var(--text); background: var(--info-bg); border-left-color: var(--info-text); cursor: default; margin: 6px 0; }
+
+  /* clickable words inside active line */
+  .word { cursor: pointer; border-radius: 3px; padding: 1px 3px; transition: background .1s; text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; text-decoration-color: var(--info-text); }
   .word:hover { background: var(--info-bg); color: var(--info-text); }
-  .word.in-vocab { background: #E1F5EE; color: #085041; }
-  .sub-index { font-size: 12px; color: var(--text3); margin-top: 8px; }
+  .word.in-vocab { background: var(--accent-bg); color: var(--accent); text-decoration: none; }
 
-  /* Word popup */
-  .word-popup { position: fixed; z-index: 999; background: var(--bg); border: 0.5px solid var(--border2); border-radius: var(--radius); padding: 12px 16px; min-width: 200px; max-width: 280px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); display: none; }
-  .wp-word { font-size: 16px; font-weight: 600; margin-bottom: 3px; }
-  .wp-phonetic { font-size: 12px; color: var(--text2); margin-bottom: 7px; }
-  .wp-def { font-size: 13px; line-height: 1.5; margin-bottom: 10px; }
-  .wp-actions { display: flex; gap: 8px; }
-  .wp-btn { font-size: 12px; padding: 5px 11px; border-radius: 6px; border: 0.5px solid var(--border2); cursor: pointer; background: transparent; color: var(--text); font-family: inherit; display: flex; align-items: center; gap: 5px; }
-  .wp-btn:hover { background: var(--bg2); }
-  .wp-btn.added { background: #E1F5EE; border-color: #0F6E56; color: #085041; }
+  /* hidden subtitle mode */
+  .subtitle-scroll.hidden-sub .sub-line.active .word { color: transparent !important; background: var(--bg3); border-radius: 3px; text-decoration: none; }
+  .subtitle-scroll.hidden-sub .sub-line:not(.active) { filter: blur(3px); pointer-events: none; }
 
-  /* Vocab tab */
+  /* ── Word Detail Panel ── */
+  .word-detail { padding: 20px 20px 24px; animation: wd-in .2s ease; }
+  @keyframes wd-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+
+  .wd-back { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 0.5px solid var(--border2); border-radius: 6px; padding: 5px 12px; font-size: 13px; cursor: pointer; color: var(--text2); font-family: inherit; margin-bottom: 16px; }
+  .wd-back:hover { background: var(--bg2); }
+
+  .wd-word-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+  .wd-word { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; }
+  .wd-phonetic { font-size: 14px; color: var(--text2); }
+
+  .wd-def { font-size: 17px; font-weight: 500; color: var(--text); margin: 10px 0 4px; }
+  .wd-longdef { font-size: 14px; color: var(--text2); line-height: 1.7; margin-bottom: 14px; }
+
+  .wd-context { background: var(--bg2); border-left: 3px solid var(--border2); border-radius: 6px; padding: 12px 14px; font-size: 14px; color: var(--text2); line-height: 1.7; font-style: italic; margin-bottom: 18px; }
+  .wd-context mark { background: #FAEEDA; color: #633806; border-radius: 2px; padding: 0 2px; font-style: normal; font-weight: 600; }
+
+  .wd-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+  .wd-add { padding: 11px 22px; background: var(--info-text); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 14px; font-weight: 500; cursor: pointer; font-family: inherit; transition: background .15s; display: flex; align-items: center; gap: 7px; }
+  .wd-add:hover { background: #1469b5; }
+  .wd-add.added { background: var(--accent); }
+  .wd-skip { padding: 11px 22px; background: transparent; color: var(--text2); border: 0.5px solid var(--border2); border-radius: var(--radius-sm); font-size: 14px; cursor: pointer; font-family: inherit; }
+  .wd-skip:hover { background: var(--bg2); }
+
+  /* ── Vocab tab ── */
   .vocab-section { padding: 0.5rem 0; }
   .section-title { font-size: 16px; font-weight: 500; margin-bottom: 12px; }
   .vocab-item { display: flex; align-items: flex-start; gap: 12px; padding: 12px 16px; background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); margin-bottom: 8px; }
@@ -128,7 +133,7 @@
   .vocab-del { background: transparent; border: none; cursor: pointer; color: var(--text3); font-size: 18px; padding: 2px 4px; line-height: 1; }
   .vocab-del:hover { color: #A32D2D; }
 
-  /* Quiz */
+  /* ── Quiz ── */
   .quiz-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 20px; margin-top: 1.5rem; }
   .quiz-label { font-size: 12px; color: var(--text3); margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
   .quiz-q { font-size: 15px; font-weight: 500; margin-bottom: 14px; }
@@ -146,7 +151,9 @@
   @media (max-width: 500px) {
     .app-header { padding: 0 1rem; }
     .app-body { padding: 1rem 0.75rem 3rem; }
-    .subtitle-line { font-size: 15px; }
+    .sub-line { font-size: 13px; }
+    .sub-line.active { font-size: 16px; }
+    .wd-word { font-size: 24px; }
   }
 </style>
 </head>
@@ -155,118 +162,77 @@
 <header class="app-header">
   <h1><i class="ti ti-ear" style="font-size:20px;vertical-align:-2px;margin-right:6px"></i>Shadow Reading</h1>
   <div class="tabs">
-    <button class="tab active" onclick="switchTab(&#39;practice&#39;,this)">
-      <i class="ti ti-player-play"></i> 练习
-    </button>
-    <button class="tab" onclick="switchTab(&#39;vocab&#39;,this)">
-      <i class="ti ti-book"></i> 生词本
-      <span class="tab-badge" id="vocab-cnt">0</span>
-    </button>
+    <button class="tab active" onclick="switchTab('practice',this)"><i class="ti ti-player-play"></i> 练习</button>
+    <button class="tab" onclick="switchTab('vocab',this)"><i class="ti ti-book"></i> 生词本 <span class="tab-badge" id="vocab-cnt">0</span></button>
   </div>
 </header>
 
 <div class="app-body">
 
-  <!-- Practice Tab -->
   <div id="tab-practice">
     <div class="filter-row">
       <span class="filter-label">难度：</span>
-      <button class="chip c-all active" onclick="setFilter(&#39;all&#39;,this)">全部</button>
-      <button class="chip c-easy" onclick="setFilter(&#39;easy&#39;,this)">简单</button>
-      <button class="chip c-medium" onclick="setFilter(&#39;medium&#39;,this)">中等</button>
-      <button class="chip c-hard" onclick="setFilter(&#39;hard&#39;,this)">困难</button>
+      <button class="chip c-all active" onclick="setFilter('all',this)">全部</button>
+      <button class="chip c-easy" onclick="setFilter('easy',this)">简单</button>
+      <button class="chip c-medium" onclick="setFilter('medium',this)">中等</button>
+      <button class="chip c-hard" onclick="setFilter('hard',this)">困难</button>
       <span class="filter-label" style="margin-left:8px">来源：</span>
-      <button class="chip c-all active" id="src-all" onclick="setSrc(&#39;all&#39;,this)">全部</button>
-      <button class="chip c-all" id="src-ted" onclick="setSrc(&#39;TED&#39;,this)">TED</button>
-      <button class="chip c-all" id="src-bbc" onclick="setSrc(&#39;BBC&#39;,this)">BBC</button>
+      <button class="chip c-all active" id="src-all" onclick="setSrc('all',this)">全部</button>
+      <button class="chip c-all" id="src-ted" onclick="setSrc('TED',this)">TED</button>
+      <button class="chip c-all" id="src-bbc" onclick="setSrc('BBC',this)">BBC</button>
     </div>
-
-    <div class="video-list" id="video-list">
-    <div class="video-item " onclick="selectVideo(&#39;v1&#39;)">
-      <i class="ti ti-brand-youtube" style="font-size:24px;color:#cc0000;flex-shrink:0"></i>
-      <div class="vi-info">
-        <div class="vi-title">How great leaders inspire action</div>
-        <div class="vi-meta">TED</div>
-      </div>
-      <span class="diff-badge diff-easy">简单</span>
-    </div>
-    <div class="video-item " onclick="selectVideo(&#39;v2&#39;)">
-      <i class="ti ti-brand-youtube" style="font-size:24px;color:#185fa5;flex-shrink:0"></i>
-      <div class="vi-info">
-        <div class="vi-title">BBC Learning English — 6 Minute English</div>
-        <div class="vi-meta">BBC</div>
-      </div>
-      <span class="diff-badge diff-easy">简单</span>
-    </div>
-    <div class="video-item " onclick="selectVideo(&#39;v3&#39;)">
-      <i class="ti ti-brand-youtube" style="font-size:24px;color:#cc0000;flex-shrink:0"></i>
-      <div class="vi-info">
-        <div class="vi-title">The danger of a single story</div>
-        <div class="vi-meta">TED</div>
-      </div>
-      <span class="diff-badge diff-medium">中等</span>
-    </div>
-    <div class="video-item " onclick="selectVideo(&#39;v4&#39;)">
-      <i class="ti ti-brand-youtube" style="font-size:24px;color:#185fa5;flex-shrink:0"></i>
-      <div class="vi-info">
-        <div class="vi-title">BBC Global News — Climate Summit</div>
-        <div class="vi-meta">BBC</div>
-      </div>
-      <span class="diff-badge diff-medium">中等</span>
-    </div>
-    <div class="video-item " onclick="selectVideo(&#39;v5&#39;)">
-      <i class="ti ti-brand-youtube" style="font-size:24px;color:#cc0000;flex-shrink:0"></i>
-      <div class="vi-info">
-        <div class="vi-title">Do schools kill creativity?</div>
-        <div class="vi-meta">TED</div>
-      </div>
-      <span class="diff-badge diff-hard">困难</span>
-    </div>
-    <div class="video-item " onclick="selectVideo(&#39;v6&#39;)">
-      <i class="ti ti-brand-youtube" style="font-size:24px;color:#cc0000;flex-shrink:0"></i>
-      <div class="vi-info">
-        <div class="vi-title">Inside the mind of a master procrastinator</div>
-        <div class="vi-meta">TED</div>
-      </div>
-      <span class="diff-badge diff-hard">困难</span>
-    </div></div>
+    <div class="video-list" id="video-list"></div>
 
     <div class="player-card" id="player-card">
       <div class="player-wrap">
-        <iframe id="yt-frame" allowfullscreen="" allow="autoplay; encrypted-media; picture-in-picture" src="./Shadow Reading — 英语影子跟读_files/saved_resource.html"></iframe>
+        <iframe id="yt-frame" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture"></iframe>
       </div>
       <div class="player-controls">
-        <button class="ctrl-btn" id="sub-toggle-btn" onclick="toggleSub()">
-          <i class="ti ti-subtitles"></i> 字幕：显示
-        </button>
-        <button class="ctrl-btn rec-btn" id="rec-btn" onclick="toggleRec()">
-          <i class="ti ti-microphone"></i> 开始跟读
-        </button>
+        <button class="ctrl-btn" id="sub-toggle-btn" onclick="toggleSub()"><i class="ti ti-subtitles"></i> 字幕：显示</button>
+        <button class="ctrl-btn rec-btn" id="rec-btn" onclick="toggleRec()"><i class="ti ti-microphone"></i> 开始跟读</button>
         <div class="spacer"></div>
         <span class="rec-timer" id="rec-timer"></span>
       </div>
       <div class="score-bar" id="score-bar">
         <div class="score-row">
           <div class="score-num" id="score-num"></div>
-          <div>
-            <div class="score-stars" id="score-stars"></div>
-            <div class="score-detail" id="score-detail"></div>
-          </div>
+          <div><div class="score-stars" id="score-stars"></div><div class="score-detail" id="score-detail"></div></div>
         </div>
       </div>
-      <div class="subtitle-wrap" id="sub-wrap">
-        <div class="sub-nav">
+
+      <!-- Subtitle wrap: contains sub-nav + subtitle-scroll + word-detail (mutually exclusive) -->
+      <div class="subtitle-wrap">
+        <div class="sub-nav" id="sub-nav">
           <button class="sub-nav-btn" onclick="prevSub()">◀ 上一句</button>
           <span id="sub-pos">1 / 1</span>
           <button class="sub-nav-btn" onclick="nextSub()">下一句 ▶</button>
           <button class="sub-nav-btn" onclick="autoPlay()" id="auto-btn">▶ 自动播放</button>
         </div>
-        <div class="subtitle-line" id="subtitle-line">选择上方视频，字幕将显示在这里。点击单词可查看释义并加入生词本。</div>
+        <div class="subtitle-scroll" id="subtitle-scroll">
+          <div class="sub-line active">选择上方视频开始学习。点击高亮句子中的单词可查看释义，选择是否加入生词本。</div>
+        </div>
+
+        <!-- Word Detail Panel — shown when a word is tapped -->
+        <div class="word-detail hidden" id="word-detail">
+          <button class="wd-back" onclick="closeWordDetail()"><i class="ti ti-arrow-left"></i> 返回字幕</button>
+          <div class="wd-word-row">
+            <span class="wd-word" id="wd-word"></span>
+            <span class="wd-phonetic" id="wd-phonetic"></span>
+          </div>
+          <div class="wd-def" id="wd-def"></div>
+          <div class="wd-longdef" id="wd-longdef"></div>
+          <div class="wd-context hidden" id="wd-context"></div>
+          <div class="wd-actions">
+            <button class="wd-add" id="wd-add-btn" onclick="addCurrentWord(this)">
+              <i class="ti ti-plus"></i> 加入生词本
+            </button>
+            <button class="wd-skip" onclick="closeWordDetail()">暂不添加</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Vocab Tab -->
   <div id="tab-vocab" class="hidden">
     <div class="vocab-section">
       <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
@@ -290,10 +256,8 @@
 
 </div>
 
-<!-- Word popup -->
-<div class="word-popup" id="word-popup" style="display: none;"></div>
-
 <script>
+/* ─────────────── VIDEO DATA ─────────────── */
 const VIDEOS = [
   { id:'v1', title:'How great leaders inspire action', src:'TED', diff:'easy',
     yt:'https://www.youtube.com/embed/qp0HIF3SfI4',
@@ -303,11 +267,61 @@ const VIDEOS = [
       "For example: Why is Apple so innovative?",
       "Year after year, after year, they're more innovative than all their competition.",
       "And yet, they're just a computer company. They're just like everyone else.",
-      "Their tools, their access to the same talent, the same agencies, the same consultants.",
-      "Then why is it that they seem to have something different?"
+      "They have access to the same talent, the same agencies, the same consultants, the same media.",
+      "Then why is it that they seem to have something different?",
+      "Why is it that Martin Luther King led the Civil Rights Movement?",
+      "He wasn't the only man who suffered in pre-civil rights America.",
+      "And he certainly wasn't the only great orator of the day. Why him?",
+      "And why is it that the Wright Brothers were able to figure out controlled powered manned flight?",
+      "There were other teams who were better qualified, better funded than the Wright Brothers.",
+      "Samuel Pierpont Langley had money and talent, and yet he didn't make it.",
+      "The Wright Brothers succeeded with none of that. No money, no higher education.",
+      "There's a pattern here. All the great inspiring leaders think, act and communicate the exact same way.",
+      "And it's the complete opposite to everyone else. I call it the Golden Circle.",
+      "Every organization on the planet knows WHAT they do — 100 percent.",
+      "Some know HOW they do it — their differentiating value proposition.",
+      "But very few people or organizations know WHY they do what they do.",
+      "And by WHY I don't mean to make a profit. That's a result. It's never a reason.",
+      "By WHY I mean: What's your purpose? What's your cause? What's your belief?",
+      "Why does your organization exist? Why do you get out of bed in the morning?",
+      "And why should anyone care?",
+      "The inspired leaders all think, act and communicate from the inside out.",
+      "Let me give you an example. I use Apple because they're easy to understand.",
+      "If Apple were like everyone else, their marketing message might sound like this:",
+      "'We make great computers. They're beautifully designed and simple to use. Want to buy one?'",
+      "Here's how Apple actually communicates:",
+      "'Everything we do, we believe in challenging the status quo. We believe in thinking differently.'",
+      "'The way we challenge the status quo is by making products that are beautifully designed.'",
+      "'We just happen to make great computers. Want to buy one?'",
+      "Totally different, right? You're ready to buy a computer from me.",
+      "I just reversed the order of information.",
+      "What it proves to us is that people don't buy what you do; they buy why you do it.",
+      "And what you do simply serves as the proof of what you believe.",
+      "The goal is not to do business with everybody who needs what you have.",
+      "The goal is to do business with people who believe what you believe.",
+      "Here's the best part: None of what I'm telling you is my opinion. It's all grounded in biology.",
+      "If you look at a cross-section of the human brain, you see it's broken into three major components.",
+      "Our newest brain, the Homo sapien brain, is the neocortex.",
+      "The neocortex corresponds with the WHAT level. It's responsible for all rational and analytical thought.",
+      "The middle two sections make up our limbic brain.",
+      "Our limbic brain is responsible for all our feelings, like trust and loyalty.",
+      "It's also responsible for all human behavior and all decision-making.",
+      "And it has no capacity for language.",
+      "When we communicate from the outside in, people can understand vast amounts of complicated information.",
+      "But it doesn't drive behavior.",
+      "When we communicate from the inside out, we talk directly to the part of the brain that controls behavior.",
+      "This is where gut decisions come from.",
+      "The goal is not to hire people who need a job. It's to hire people who believe what you believe.",
+      "Dr. Martin Luther King gave the 'I Have a Dream' speech, not the 'I Have a Plan' speech.",
+      "He told people what he believed, and people who believed what he believed took his cause.",
+      "And they marched not for him, but for themselves.",
+      "Those who led inspired a movement. Those who lead inspire us.",
+      "We follow those who lead not because we have to, but because we want to.",
+      "We follow those who lead not for them, but for ourselves.",
+      "And it's those who start with WHY that have the ability to inspire those around them."
     ]
   },
-  { id:'v2', title:'BBC Learning English — 6 Minute English', src:'BBC', diff:'easy',
+  { id:'v2', title:'BBC 6 Minute English — The Science of Sleep', src:'BBC', diff:'easy',
     yt:'https://www.youtube.com/embed/MO5M7yBmFTA',
     subtitles:[
       "Hello and welcome to 6 Minute English from BBC Learning English.",
@@ -316,7 +330,38 @@ const VIDEOS = [
       "Most adults need between seven and nine hours of sleep a night.",
       "But many people regularly get far less than this recommended amount.",
       "So what happens to our bodies and minds when we don't get enough sleep?",
-      "Scientists say sleep deprivation can affect memory, mood, and even physical health."
+      "Scientists say sleep deprivation can affect memory, mood, and physical health.",
+      "Research shows that even one night of poor sleep can impair your decision-making ability.",
+      "Before we get into the details, here's today's question.",
+      "Which animal sleeps the most each day? A: the koala, B: the sloth, or C: the little brown bat?",
+      "I'll go with the little brown bat.",
+      "You'll have to wait until the end of the programme to find out the answer.",
+      "So Neil, what's the latest research on sleep telling us?",
+      "Well, scientists have been studying sleep for decades, and we're learning more all the time.",
+      "One thing they've found is that during sleep, the brain goes through several important cycles.",
+      "REM sleep, or rapid eye movement sleep, is when most dreaming occurs.",
+      "Scientists believe this stage is crucial for memory consolidation and emotional processing.",
+      "During non-REM sleep, the body repairs tissues, builds bone and muscle, and strengthens the immune system.",
+      "So sleep isn't a passive activity — it's when a lot of essential maintenance work gets done.",
+      "That's a really interesting way to think about it.",
+      "And what happens when we consistently don't get enough sleep?",
+      "Lack of sleep is linked to a higher risk of heart disease, diabetes, and obesity.",
+      "Sleep-deprived people also tend to make poorer decisions and have slower reaction times.",
+      "This is why drowsy driving is considered just as dangerous as drunk driving.",
+      "There's also mounting evidence that chronic sleep deprivation increases the risk of dementia.",
+      "So getting a good night's sleep isn't just about feeling rested.",
+      "It's essential for your long-term mental and physical health.",
+      "Now, many people struggle to get to sleep or stay asleep.",
+      "What advice do experts give for improving sleep quality?",
+      "First, try to go to bed and wake up at the same time every day — even at weekends.",
+      "Consistency helps regulate your body's internal clock, known as the circadian rhythm.",
+      "Second, avoid screens for at least an hour before bed.",
+      "Blue light from phones and tablets suppresses the production of melatonin, the sleep hormone.",
+      "Third, make sure your bedroom is cool, dark, and quiet.",
+      "And avoid caffeine in the afternoon and evening.",
+      "Now, the answer to our question: it was C, the little brown bat.",
+      "It can sleep up to 20 hours a day. That's quite impressive.",
+      "That's all we have time for. Join us again for 6 Minute English from BBC Learning English."
     ]
   },
   { id:'v3', title:'The danger of a single story', src:'TED', diff:'medium',
@@ -326,52 +371,622 @@ const VIDEOS = [
       "I grew up on a university campus in eastern Nigeria.",
       "My mother says that I started reading at the age of two, although I think four is probably close to the truth.",
       "I was an early reader, and what I read were British and American children's books.",
-      "I was also an early writer, and when I began to write, I would write the characters I was reading about.",
+      "I was also an early writer, and when I began to write, I wrote the characters I was reading about.",
       "All my characters were white and blue-eyed. They played in the snow. They ate apples.",
-      "And they talked a lot about the weather, how lovely it was that the sun had come out."
+      "And they talked a lot about the weather, how lovely it was that the sun had come out.",
+      "Now, this despite the fact that I lived in Nigeria.",
+      "I had never been outside Nigeria. We didn't have snow, we ate mangoes.",
+      "And we never talked about the weather because there was no need to.",
+      "What this demonstrates is how impressionable and vulnerable we are in the face of a story.",
+      "Particularly as children. Because all I had read were books in which characters were foreign.",
+      "I had become convinced that books by their very nature had to have foreigners in them.",
+      "Things changed when I discovered African books.",
+      "There weren't many available, but because of writers like Chinua Achebe and Camara Laye,",
+      "I went through a mental shift in my perception of literature.",
+      "I realized that people like me, girls with skin the color of chocolate, could also exist in literature.",
+      "I would like to tell you about a young man from a village in Nigeria named Fide.",
+      "The only thing my mother told us about him was that his family was very poor.",
+      "So I felt tremendous pity for his family.",
+      "Then one Saturday we went to his village to visit, and his mother showed us a beautifully patterned basket made by his brother.",
+      "I was startled. It had not occurred to me that anybody in his family could actually make something.",
+      "All I had heard about them was how poor they were, so that was all they were.",
+      "I had created a single story of Fide's family.",
+      "I came from a conventional, middle-class Nigerian family.",
+      "My American roommate was shocked by me. She asked where I had learned to speak English so well.",
+      "She was curious about my tribal music — though I had grown up listening to Mariah Carey.",
+      "She assumed that I did not know how to use a stove.",
+      "What struck me was this: she had felt sorry for me even before she saw me.",
+      "Her default position toward me, as an African, was a kind of patronizing, well-meaning pity.",
+      "My roommate had a single story of Africa — a single story of catastrophe.",
+      "In this single story, there was no possibility of Africans being similar to her in any way.",
+      "The consequence of the single story is this: It robs people of dignity.",
+      "It makes our recognition of our equal humanity difficult.",
+      "It emphasizes how we are different rather than how we are similar.",
+      "The single story creates stereotypes, and the problem with stereotypes is not that they are untrue,",
+      "but that they are incomplete. They make one story become the only story.",
+      "I've always felt that it is impossible to engage properly with a place or a person",
+      "without engaging with all of the stories of that place and that person.",
+      "The consequence of living with only one story is that you are unable to see the full humanity of people.",
+      "When we reject the single story, when we realize that there is never a single story about any place,",
+      "we regain a kind of paradise.",
+      "Stories matter. Many stories matter.",
+      "Stories have been used to dispossess and to malign.",
+      "But stories can also be used to empower and to humanize.",
+      "Stories can break the dignity of a people, but stories can also repair that broken dignity."
     ]
   },
-  { id:'v4', title:'BBC Global News — Climate Summit', src:'BBC', diff:'medium',
-    yt:'https://www.youtube.com/embed/live_stream?channel=UCCjB3V0HMnQ0-FcQVQxXYFw',
+  { id:'v4', title:'BBC Global News — Climate and the Environment', src:'BBC', diff:'medium',
+    yt:'https://www.youtube.com/embed/JsT9V3WQiNA',
     subtitles:[
       "Welcome to the BBC Global News Podcast.",
       "Today we bring you the latest international news from around the world.",
-      "Our top story: world leaders have gathered to discuss climate policy.",
+      "Our top story: world leaders have gathered for a major climate summit.",
       "The summit aims to reach new commitments on reducing carbon emissions.",
       "Experts say this meeting could be a turning point in global climate action.",
       "Several nations have already pledged to reach net-zero emissions by 2050.",
-      "However, critics argue that more immediate action is urgently needed."
+      "But critics argue that pledges without enforcement mechanisms are not enough.",
+      "The United Nations Secretary-General has warned that time is running out.",
+      "He said the world is at a crossroads and must choose the path of renewal.",
+      "Without significant changes, global temperatures could rise by more than two degrees Celsius.",
+      "Scientists say that would have catastrophic consequences for ecosystems worldwide.",
+      "Low-lying coastal nations face existential threats from rising sea levels.",
+      "Island communities in the Pacific say they are already experiencing the effects.",
+      "Developing nations are calling for wealthier countries to provide more financial support.",
+      "They argue that rich countries are historically responsible for the majority of carbon emissions.",
+      "A new fund to help poorer nations adapt to climate change was proposed at the summit.",
+      "However, negotiators are still far apart on the details of how much money should be committed.",
+      "Meanwhile, renewable energy adoption has been accelerating across many regions.",
+      "Solar and wind power are now cheaper than fossil fuels in most parts of the world.",
+      "Electric vehicle sales have been growing rapidly, reshaping the global auto industry.",
+      "But the transition away from coal and oil faces significant political and economic challenges.",
+      "Workers in fossil fuel industries fear job losses and economic disruption.",
+      "Governments must balance the urgency of climate action with social and economic concerns.",
+      "Environmental groups are calling for more ambitious targets and faster action.",
+      "The next report from the Intergovernmental Panel on Climate Change is expected to show further warming.",
+      "Scientists are clear: the window for preventing the worst impacts of climate change is closing fast."
     ]
   },
   { id:'v5', title:'Do schools kill creativity?', src:'TED', diff:'hard',
     yt:'https://www.youtube.com/embed/iG9CE55wbtY',
     subtitles:[
       "Good morning. How are you? It's been great, hasn't it? I've been blown away by the whole thing.",
-      "In fact, I'm leaving. There have been three themes running through the conference which are relevant to what I want to talk about.",
+      "There have been three themes running through this conference which are relevant to what I want to talk about.",
       "One is the extraordinary evidence of human creativity in all of the presentations that we've had.",
-      "Just the variety of it and the range of it. The second is that it's put us in a place where we have no idea what's going to happen in terms of the future.",
-      "I have an interest in education — actually, what I find is everybody has an interest in education.",
-      "Don't you? I find this very interesting. If you are at a dinner party, and you say you work in education — actually, you're not often at dinner parties, frankly.",
-      "If you're in education, you're not asked. And you're never asked back, curiously."
+      "Just the variety of it and the range of it.",
+      "The second is that it puts us in a place where we have no idea what's going to happen in terms of the future.",
+      "I have an interest in education. Actually, everybody has an interest in education.",
+      "I find this very interesting. If you're at a dinner party, and you say you work in education,",
+      "you're not often asked back. And you're never asked back, curiously.",
+      "But if you ask people about their education, they pin you to the wall.",
+      "Because it's one of those things that goes deep with people.",
+      "We have a huge vested interest in education, partly because it's meant to take us into the future.",
+      "My contention is that creativity now is as important in education as literacy.",
+      "And we should treat it with the same status.",
+      "I heard a great story recently — I love telling it — of a little girl who was in a drawing lesson.",
+      "She was six, and she was at the back, drawing. The teacher was fascinated and went over to her.",
+      "She asked the girl, 'What are you drawing?' And the girl said, 'I'm drawing a picture of God.'",
+      "The teacher said, 'But nobody knows what God looks like.' And the girl said, 'They will in a minute.'",
+      "Kids will take a chance. If they don't know, they'll have a go.",
+      "They're not frightened of being wrong.",
+      "Now, I don't mean to say that being wrong is the same thing as being creative.",
+      "But what we do know is that if you're not prepared to be wrong, you'll never come up with anything original.",
+      "By the time children get to be adults, most kids have lost that capacity.",
+      "They have become frightened of being wrong.",
+      "And we run our companies this way. We stigmatize mistakes.",
+      "And we're now running national education systems where mistakes are the worst thing you can make.",
+      "And the result is that we are educating people out of their creative capacities.",
+      "Picasso once said this: he said that all children are born artists.",
+      "The problem is to remain an artist as we grow up.",
+      "I believe this passionately: that we don't grow into creativity, we grow out of it.",
+      "Or rather, we get educated out of it.",
+      "Our education system is predicated on the idea of academic ability.",
+      "And there's a reason: the whole system was invented around the world to meet the needs of industrialism.",
+      "So the hierarchy is this: at the top are mathematics and languages.",
+      "Then the humanities. And at the bottom are the arts.",
+      "And in pretty much every system in the world, there's a hierarchy of subjects.",
+      "You were probably steered away from things at school when you were a kid,",
+      "things you liked, on the ground that you would never get a job doing that.",
+      "'Don't do music, you're not going to be a musician.'",
+      "'Don't do art, you won't be an artist.'",
+      "Benign advice — now, profoundly mistaken.",
+      "The whole point about public schools originally was to produce people for the Industrial Revolution.",
+      "The universities were designed on the same principle.",
+      "Degrees were designed to produce professors. And everybody else was a waste.",
+      "I think we have to rethink the fundamental principles on which we're educating our children.",
+      "There may be a way in which we can acknowledge not only the importance of academic ability,",
+      "but also the importance of divergent thinking.",
+      "The 2001 No Child Left Behind Act in America is well-intentioned,",
+      "but the net effect is that creativity is being squeezed from the school curriculum.",
+      "Our only hope for the future is to adopt a new conception of human ecology.",
+      "One in which we start to reconstitute our conception of the richness of human capacity.",
+      "Our education system has mined our minds in the way that we strip-mine the earth: for a particular commodity.",
+      "And for the future, it won't serve us.",
+      "We have to think differently about human capacity. We have to celebrate multiple forms of intelligence.",
+      "We have to be careful now that we use this gift wisely and that we avert some of the scenarios that we've talked about.",
+      "And the only way we'll do it is by seeing our creative capacities for the richness they are.",
+      "And by seeing our children for the hope that they are.",
+      "Our task is to educate their whole being, so they can face this future.",
+      "By the way, we may not see this future, but they will.",
+      "And our job is to help them make something of it."
     ]
   },
   { id:'v6', title:'Inside the mind of a master procrastinator', src:'TED', diff:'hard',
     yt:'https://www.youtube.com/embed/arj7oStGLkU',
     subtitles:[
       "So in college, I was a government major, which means I had to write a lot of papers.",
-      "Now, when a normal person has to write a paper, they might be stressed out about it, but they'll eventually sit down and start writing.",
-      "But a procrastinator's brain is very different. It also has a rational decision-maker in it, but it also has an instant gratification monkey.",
-      "And that instant gratification monkey says: 'No, no, no. Let's check Facebook first. Let's look at some YouTube videos.'",
-      "The rational decision-maker says: 'No, we need to work!' But the monkey wins.",
-      "This would all be fine if the procrastinator only had the monkey to deal with. But there's a third character: the Panic Monster.",
-      "The Panic Monster is dormant most of the time, but he suddenly wakes up when a deadline gets too close."
+      "When a normal person has to write a paper, they might be stressed out about it.",
+      "But they'll eventually sit down and start writing, making a little progress every day.",
+      "The procrastinator, on the other hand, tends to wait.",
+      "Wait until the night before the deadline.",
+      "Wait until the night OF the deadline.",
+      "And he sits down at eleven PM the night the thing is due in eight hours.",
+      "Now, I had a hypothesis about the procrastinator's brain.",
+      "A procrastinator's brain has a rational decision-maker in it.",
+      "But it also has an Instant Gratification Monkey.",
+      "So what does the Instant Gratification Monkey do?",
+      "He says: 'Let's check social media instead. Let's watch YouTube videos. Let's read about famous historical figures.'",
+      "The Rational Decision-Maker says: 'We need to work!' But the Monkey wins, and wins, and wins.",
+      "Now, why does the Monkey get to take the wheel so often?",
+      "Because the Monkey only cares about two things: easy and fun.",
+      "He operates purely in the present moment. He has no memory of the past, no knowledge of the future.",
+      "Anything that's difficult, or long-term, or not immediately enjoyable — he wants no part of it.",
+      "This would all be fine if the procrastinator only had the Monkey to deal with.",
+      "But there's a third character: the Panic Monster.",
+      "The Panic Monster is dormant most of the time, but he suddenly wakes up when a deadline gets too close.",
+      "Or when there's a risk of public embarrassment, or career consequences.",
+      "When the Panic Monster wakes up, the Monkey is absolutely terrified.",
+      "Because the Monkey, remember, is scared of only one thing — the Panic Monster.",
+      "So the Monkey runs away, and finally the Rational Decision-Maker is in control.",
+      "And the procrastinator sits down and actually does the work.",
+      "Now I've been thinking about this, and I think there are two kinds of procrastination.",
+      "Everything I've talked about so far — the akrasia, the deadline-based procrastination —",
+      "that's the first kind: when there's a deadline.",
+      "The second kind is something I call long-term procrastination — when there's no deadline.",
+      "Think about the things that matter to you: learning a new skill, starting a business, being present with your family.",
+      "These things rarely have immediate deadlines. And this is where the Panic Monster never wakes up.",
+      "The result is a large procrastinator population who have a lot of pain.",
+      "They look at the people who aren't procrastinating on these things and they wonder why.",
+      "'What's their secret? Don't they have an Instant Gratification Monkey?'",
+      "Everyone has the Monkey. But their Monkey hasn't taken over permanently.",
+      "So that's what I've been thinking about.",
+      "It turns out that life is one long procrastination opportunity.",
+      "It's possible for some people that they go through a large part of their life",
+      "and realize at some point that they've consistently delayed the things that actually matter to them.",
+      "And I think that's quite sad.",
+      "I also think the hard thing about procrastination is that it doesn't feel like procrastination.",
+      "It feels like enjoying the moment. It feels like taking a break.",
+      "But underneath that, something is going on.",
+      "And so, I want to leave you with this.",
+      "I made a box with 90 boxes — one for each week of a 90-year life.",
+      "It's not that many boxes, is it?",
+      "I want everyone to think about which boxes you've already used.",
+      "And then I want to think about the fact that all the things that really matter to you —",
+      "I want you to think about those things and the role that procrastination plays in your life.",
+      "Everyone procrastinates. The question is: are you procrastinating on things that matter to you?"
+    ]
+  },
+  { id:'v7', title:'Your body language may shape who you are', src:'TED', diff:'easy',
+    yt:'https://www.youtube.com/embed/rE3j_RHkqwc',
+    subtitles:[
+      "I want to talk to you about something that has probably already happened to you today.",
+      "So I want to ask you right now: How many of you are feeling powerful?",
+      "This is a talk about body language, and it's also about how we think and feel about ourselves.",
+      "I'm going to start by asking you to check your own body language right now.",
+      "How are you sitting? Are you making yourself big, or are you making yourself small?",
+      "Our nonverbal expressions of power and dominance go across the animal kingdom.",
+      "When people feel powerful, they expand — they take up more space.",
+      "The opposite is also true: when people feel powerless, they close up and make themselves small.",
+      "Now, what's interesting is that we also do this with technology.",
+      "We're constantly hunched over our phones, making ourselves smaller.",
+      "So the question is: do these power poses actually affect our psychology?",
+      "I want to talk about a study conducted by Dana Carney and Adam Galinsky.",
+      "They had participants hold either high-power or low-power poses for two minutes.",
+      "Then they measured testosterone and cortisol levels in their saliva.",
+      "High-power posers showed a 20 percent increase in testosterone and a 25 percent decrease in cortisol.",
+      "Low-power posers showed the opposite: a decrease in testosterone and an increase in cortisol.",
+      "Our bodies change our minds, and our minds can change our behavior.",
+      "And our behavior can change our outcomes.",
+      "So before high-stakes social evaluations like job interviews, we tend to make ourselves small.",
+      "We hunch over our phones in the waiting room, making ourselves even smaller.",
+      "I want you to try this: before your next big challenge, find a private space.",
+      "And hold a power pose for just two minutes. Expand your body. Take up space.",
+      "You don't need to do this in the boardroom. Just in the bathroom beforehand.",
+      "It's not about fooling other people. It's about sending a signal to yourself.",
+      "Don't fake it till you make it. Fake it till you become it.",
+      "You can make your body do this even when you don't feel powerful.",
+      "And eventually your body will start to believe it.",
+      "I had a student come to me after class one day. She was very upset.",
+      "She said: 'I just feel like I don't belong here. I'm not as smart as the others.'",
+      "I said: 'Fake it. Do it enough until you actually believe it.'",
+      "The next semester she had faked it enough that she was getting to be herself.",
+      "She is now a professor at a top business school.",
+      "Your body posture literally changes your brain chemistry.",
+      "Two minutes before that next stressful situation — try it.",
+      "Share it with people who don't have the luxury of knowing this.",
+      "Our bodies can change our minds, our minds can change our behavior,",
+      "and our behavior can change our outcomes."
+    ]
+  },
+  { id:'v8', title:'The power of vulnerability', src:'TED', diff:'medium',
+    yt:'https://www.youtube.com/embed/iCvmsMzlF7o',
+    subtitles:[
+      "So a couple years ago, an event planner called me because I was going to do a speaking event.",
+      "She said: 'I'm struggling with how to write about you on the little flyer.'",
+      "I said: 'Well, what do you have so far?'",
+      "She read me something, and I thought, that doesn't sound very accurate.",
+      "I said: 'I'll just send you my bio.' She said: 'Okay, well, it says here that you're a researcher.'",
+      "I said that I am. She said: 'But you seem like a storyteller.'",
+      "And I thought: I am a researcher-storyteller. I collect stories; that's what I do.",
+      "Maybe stories are just data with a soul. And maybe I'm just a storyteller.",
+      "I study vulnerability, courage, authenticity, and shame.",
+      "My research has always sat at the intersection of vulnerability and worthiness.",
+      "I had a therapist once tell me that the problem with researchers is we want to try to explain what we feel.",
+      "She said: 'Feelings are not problems to be solved. They're just feelings.'",
+      "So I set out to study connection. It's why we're here, and it gives purpose and meaning to our lives.",
+      "I spent six years trying to understand what it means to be connection-worthy.",
+      "And I found the biggest difference between people who had a strong sense of love and belonging",
+      "and those who don't — is this: the people who had it believed they were worthy of love and belonging.",
+      "That's it. They believed they were worthy.",
+      "And what they had in common was a sense of courage. Not bravery. Courage.",
+      "The word courage comes from the Latin word 'cor', meaning heart.",
+      "The original definition was: to tell the story of who you are with your whole heart.",
+      "These people had the courage to be imperfect.",
+      "They had compassion — first to be kind to themselves, and then to others.",
+      "They were willing to let go of who they thought they should be in order to be who they were.",
+      "And they fully embraced vulnerability.",
+      "They didn't talk about vulnerability as comfortable or excruciating.",
+      "They just talked about it as necessary. As beautiful.",
+      "They said: 'What makes me vulnerable makes me beautiful.'",
+      "So here's what I found: vulnerability is the core of shame and fear and our struggle for worthiness.",
+      "But it appears that it's also the birthplace of joy, creativity, belonging, and love.",
+      "I did what a lot of people do: I tried to numb vulnerability.",
+      "But you can't selectively numb emotion.",
+      "You can't numb hard feelings without also numbing joy, gratitude, and happiness.",
+      "When we numb those, we feel more uncertain, more anxious, more depressed.",
+      "And then we reach for more connection, and instead we get more disconnected.",
+      "Let ourselves be seen, deeply seen, vulnerably seen.",
+      "To love with our whole hearts, even though there's no guarantee.",
+      "To practice gratitude and joy in those moments of terror.",
+      "To say 'I love you' first. To do something where there are no guarantees.",
+      "To let ourselves be seen.",
+      "Vulnerability is not weakness.",
+      "Vulnerability is our most accurate measurement of courage.",
+      "To be vulnerable is to be alive."
+    ]
+  },
+  { id:'v9', title:'How to speak so that people want to listen', src:'TED', diff:'medium',
+    yt:'https://www.youtube.com/embed/eIho2S0ZahI',
+    subtitles:[
+      "The human voice: it's the instrument we all play.",
+      "It's the most powerful sound in the world, probably.",
+      "It's the only one that can start a war or say 'I love you.'",
+      "And yet many people have the experience of feeling that they're not being heard.",
+      "I'd like to address that issue, because I think it's very important.",
+      "I've been in sound for the last 25 years, and there are four really nasty habits we fall into.",
+      "The first is gossip — speaking ill of someone not present.",
+      "Not a nice habit, and we know perfectly well the person we're talking to will do the same about us.",
+      "The second habit is judging. It's very hard to listen to somebody if you know they're judging you.",
+      "The third is negativity. My grandmother was very good at this.",
+      "She could complain about the weather for twenty minutes. Not inspiring.",
+      "The fourth is complaining. It's the national sport in the United Kingdom.",
+      "But it's not helpful to dump your negativity on others.",
+      "There are also seven deadly sins of speaking.",
+      "Lying, which creates a fake world. Pretending, which is a kind of lying.",
+      "Dogmatism — confusing facts with opinions — is very destructive in conversation.",
+      "Now let me suggest some positive things we can do.",
+      "To check what I call HAIL: Honesty, Authenticity, Integrity, Love.",
+      "Be honest and clear. Say what you mean, mean what you say.",
+      "Be authentic — be yourself.",
+      "Have integrity — be your word. Do what you say you're going to do.",
+      "And wish the people you're talking to well.",
+      "Those four things — if you speak from those qualities, your words will carry tremendous weight.",
+      "Now, let me talk about the voice.",
+      "Register: speaking from the chest gives you a rich, warm, resonant sound.",
+      "Most of us do not make best use of our voices.",
+      "Timbre is the way your voice feels. Research shows we prefer voices that are rich, warm, and breathy.",
+      "Prosody is the singsong of speech — the way we go up and down, emphasizing things.",
+      "If you speak all on one note, it's very hard to listen to.",
+      "Pace: if you speak too fast, people can't understand you. If you speak too slowly, it's boring.",
+      "Silence can be used to great effect.",
+      "Volume: too loud, you're overbearing. Too quiet, you're ignored.",
+      "Pitch: how high or low your voice is communicates energy and emotion.",
+      "The important message here is that the world would be a much better place",
+      "if we all created our sound consciously.",
+      "If we were responsible for the sound we put into the world.",
+      "And if we spoke with intention.",
+      "I'd like to help create a world where people listen powerfully to each other,",
+      "where we all speak with integrity and authenticity,",
+      "and where we are heard as we wish to be heard."
+    ]
+  },
+  { id:'v10', title:'The puzzle of motivation', src:'TED', diff:'hard',
+    yt:'https://www.youtube.com/embed/rrkrvAUbU9Y',
+    subtitles:[
+      "I need to make a confession at the outset here.",
+      "A little over 20 years ago, I did something that I'm not particularly proud of.",
+      "I was a law student and decided to leave law school.",
+      "I'm going to talk about motivation today, because it's one of the most misunderstood topics in business.",
+      "In 1969, an economist named Sam Glucksberg showed how incentives work — and sometimes don't.",
+      "He gave people a candle, some thumbtacks, and a book of matches.",
+      "Their goal: attach the candle to the wall so wax doesn't drip on the table.",
+      "One group was simply timed: 'We're seeing how long it takes the average person.'",
+      "Another group was offered rewards: the fastest 25 percent get five dollars, the fastest one gets 20 dollars.",
+      "The group incentivized with money did worse. Significantly worse. By about three and a half minutes.",
+      "Now if you want to annoy a behavioral economist, tell him that this is obvious.",
+      "It's not obvious at all. In fact, it's the opposite of what we would predict.",
+      "What economists would predict is that higher incentives lead to better performance.",
+      "But that's not what happened here. Here's what happened.",
+      "The candle problem requires non-obvious thinking — you need to empty the box and use it as a platform.",
+      "Extrinsic motivators actually narrow your focus and restrict your thinking.",
+      "This is one of the most robust findings in social science — and one of the most ignored.",
+      "The research community has confirmed this result again and again.",
+      "Higher rewards led to better performance... only for mechanical tasks.",
+      "For tasks requiring even basic cognitive skill, higher rewards led to worse performance.",
+      "There's a mismatch between what science knows and what business does.",
+      "Our business operating system — built around extrinsic motivators — doesn't work.",
+      "And it's not just a small mismatch. It's a fundamental mismatch.",
+      "So what does motivate people to do better work?",
+      "The science shows that three elements foster genuine motivation.",
+      "The first element is autonomy: the urge to direct our own lives.",
+      "The second is mastery: the desire to get better and better at something that matters.",
+      "The third is purpose: the yearning to do what we do in service of something larger than ourselves.",
+      "Autonomy: managers who give their teams complete freedom over their work see dramatic results.",
+      "At Atlassian, they give engineers one day a quarter to work on anything they want.",
+      "In one day, a whole burst of fixes and new products emerge from these sessions.",
+      "Mastery: mastery is what happens when people are intrinsically motivated to do better.",
+      "It's the reason people play musical instruments on weekends. Nobody makes them do it.",
+      "Purpose: when profit motive becomes unmoored from purpose motive, bad things happen.",
+      "When the profit motive becomes too dominant, we see the bad behavior that led to the recent financial crisis.",
+      "But here's the flip side. The organizations that have transcended the narrow focus on profit",
+      "are outperforming their more traditionally-oriented counterparts in many sectors.",
+      "The science says one thing. Business does another. And that is the problem.",
+      "Let me tell you about a company called Results-Only Work Environment.",
+      "Their credo is this: work whenever you want, wherever you want,",
+      "as long as the work gets done. No mandatory meetings, no time-wasting.",
+      "What happened? Productivity went up. Engagement went up. Satisfaction went up.",
+      "Turnover went down.",
+      "The science confirms what we know in our hearts.",
+      "Now let's build organizations — and schools, and lives — that make use of this insight."
+    ]
+  },
+  { id:'v11', title:'Try something new for 30 days', src:'TED', diff:'easy',
+    yt:'https://www.youtube.com/embed/UNP03fDpg1U',
+    subtitles:[
+      "A few years ago, I felt like I was stuck in a rut.",
+      "So I decided to follow in the footsteps of the great American philosopher Morgan Spurlock",
+      "and try something new for 30 days.",
+      "The idea is simple: think of something you've always wanted to add to your life.",
+      "And try it for the next 30 days.",
+      "It turns out that 30 days is just about the right amount of time to add a new habit or subtract a habit.",
+      "During my first 30 days, I took a photo every single day.",
+      "It was remarkably not that hard. And at the end of the 30 days, I had 30 photos.",
+      "So for the next 30 days, I tried to write a novel.",
+      "Now, I was using the NaNoWriMo method — National Novel Writing Month.",
+      "Every November, tens of thousands of people try to write their own 50,000-word novel.",
+      "It turns out I write very, very slowly.",
+      "I did finish my novel. It was not very good. But I had written a novel.",
+      "I also eliminated sugar from my diet for 30 days.",
+      "That was incredibly difficult. But I did it.",
+      "I also biked to work every day for a month.",
+      "I stopped watching TV for a month.",
+      "I started going to the gym every morning.",
+      "Each of these challenges taught me something about myself.",
+      "The months when I did the 30-day challenges were, by far, the most memorable months of my life.",
+      "I actually remember them much more vividly than the preceding years.",
+      "I also noticed that as I started to do more little 30-day challenges,",
+      "my self-confidence grew. I went from a desk-bound computer nerd",
+      "to someone who had climbed Mount Kilimanjaro.",
+      "I even had a 30-day challenge to climb that mountain.",
+      "And what I found along the way is that the small, sustainable changes are more likely to stick.",
+      "There's nothing wrong with big, crazy challenges.",
+      "In my case, I also did 30 days without talking. That was pretty weird.",
+      "But the small steps are what actually build up over time.",
+      "So think about something you have always wanted to do, or not do.",
+      "And give it a shot. Just for 30 days.",
+      "If you really want something badly enough, you can do anything for 30 days.",
+      "I guarantee your next 30 days are going to pass whether you like it or not.",
+      "So why not think about something you have always wanted to try and give it a shot?",
+      "Next 30 days start now."
+    ]
+  },
+  { id:'v12', title:'What makes a good life? Lessons from the longest study on happiness', src:'TED', diff:'medium',
+    yt:'https://www.youtube.com/embed/8KkKuTCFvzI',
+    subtitles:[
+      "What keeps us happy and healthy as we go through life?",
+      "If you were going to invest now in your future best self, where would you put your time and energy?",
+      "There's a lot of advice out there on this topic. A lot of it feels like it's guesswork.",
+      "But we actually know a lot about what it takes to have a healthy, happy life.",
+      "The Harvard Study of Adult Development may be the longest study of adult life that's ever been done.",
+      "For 75 years, we've tracked the lives of 724 men, year after year.",
+      "We've asked about their work, their home lives, their health.",
+      "And we've asked about their lives in general — without knowing how their life stories were going to turn out.",
+      "Studies like this are exceedingly rare. Almost all fall apart within a decade because of funding or interest.",
+      "But through a combination of luck and the persistence of several generations of researchers,",
+      "this study has survived.",
+      "About 60 of our original 724 men are still alive, still participating in the study.",
+      "Most of them are in their 90s.",
+      "And we're now beginning to study the more than 2,000 children of these men.",
+      "And the clearest message that we get from this 75-year study is this:",
+      "Good relationships keep us happier and healthier. Period.",
+      "We've learned three big lessons about relationships.",
+      "The first is that social connections are really good for us,",
+      "and that loneliness kills.",
+      "It turns out that people who are more socially connected to family, to friends, to community,",
+      "are happier. They're physically healthier. And they live longer.",
+      "And people who are more isolated than they want to be",
+      "are less happy, their health declines earlier in midlife,",
+      "their brain functioning declines sooner,",
+      "and they live shorter lives than people who are not lonely.",
+      "And the sad fact is that at any given time, more than one in five Americans will report that they're lonely.",
+      "The second lesson we learned is that it's not just the number of friends you have.",
+      "It's the quality of your close relationships that matters.",
+      "Living in the midst of conflict is really bad for our health.",
+      "High-conflict marriages, for example, without much affection,",
+      "turn out to be very bad for our health, perhaps worse than getting divorced.",
+      "And living in the midst of good, warm relationships is protective.",
+      "The third lesson we learned about relationships and our health is that good relationships",
+      "don't just protect our bodies; they protect our brains.",
+      "It turns out that being in a securely attached relationship to another person in your 80s",
+      "is protective. That the people who are in relationships",
+      "where they really feel they can count on the other person in times of need,",
+      "those people's memories stay sharper longer.",
+      "And the people in relationships where they feel they really can't count on the other —",
+      "those are the people who experience earlier memory decline.",
+      "The people in our study who were the happiest in retirement",
+      "were the people who had actively worked to replace workmates with new playmates.",
+      "Just like the millennia before us, we human beings are at our best",
+      "when we are knitted together with other human beings.",
+      "The good life is built with good relationships."
+    ]
+  },
+  { id:'v13', title:'The happy secret to better work', src:'TED', diff:'easy',
+    yt:'https://www.youtube.com/embed/GXy__kBVq1M',
+    subtitles:[
+      "When I was seven years old, my sister was two, and we were playing on my bunk bed.",
+      "I pushed her off, and she fell and hit the ground.",
+      "I realized I had two choices: let her cry, or reframe the situation.",
+      "I said to her: 'Amy, Amy — you're a unicorn. Unicorns land exactly like that.'",
+      "She stopped crying immediately.",
+      "That was one of the first times I realized that I could change reality just by changing my mindset.",
+      "We believe we should work hard in order to be happy.",
+      "But could we be thinking about this backwards?",
+      "In the last decade, I've been studying high achievers and happiness in 48 countries.",
+      "And I've found that happiness is actually a work advantage.",
+      "Every time your brain has a success, you change the goalpost for what success looks like.",
+      "If happiness is on the other side of success, your brain never gets there.",
+      "What we found is that only 25 percent of job successes are predicted by IQ.",
+      "75 percent of job successes are predicted by your optimism levels,",
+      "your social support, and your ability to see stress as a challenge instead of a threat.",
+      "We call this 'positive intelligence.'",
+      "The greatest competitive advantage in the modern economy is a positive and engaged brain.",
+      "A positive brain is 31 percent more productive than a negative, neutral, or stressed brain.",
+      "Doctors are 19 percent faster and more accurate when in a positive state.",
+      "Salespeople are 37 percent better at sales.",
+      "We need to reverse the formula. Instead of waiting for success to be happy,",
+      "train your brain to work in the present rather than after every achievement.",
+      "If we can find a way to become positive in the present, the brain works even more successfully.",
+      "We've found that there are ways to train your brain to be more positive.",
+      "The first: for 21 days in a row, write down three new things you are grateful for.",
+      "The second: journaling about one positive experience you've had over the past 24 hours.",
+      "The third: exercise.",
+      "The fourth: meditation — this allows your brain to focus on one task at a time.",
+      "The fifth: random acts of kindness.",
+      "These five things, done for just 21 days, can rewire your brain.",
+      "They literally rewire your brain to start scanning the world for the positive, not the negative.",
+      "You can actually raise your baseline happiness level permanently.",
+      "And when you do that, you start to find the work much more fulfilling.",
+      "The formula for high performance and happiness is the same.",
+      "Happiness is the precursor to success, not merely the result.",
+      "And happiness gives you the competitive edge."
+    ]
+  },
+  { id:'v14', title:'BBC 6 Minute English — Are you an introvert or extrovert?', src:'BBC', diff:'easy',
+    yt:'https://www.youtube.com/embed/c0KYU2j0TM4',
+    subtitles:[
+      "Hello and welcome to 6 Minute English. I'm Sam, and I'm joined today by Rob.",
+      "Today we're exploring personality types — specifically, introverts and extroverts.",
+      "Now, Rob, would you say you're an introvert or an extrovert?",
+      "I think I'm somewhere in the middle, actually.",
+      "There's actually a word for that — ambivert. Someone who sits between the two.",
+      "So let's start with some basics. What exactly is an introvert?",
+      "In simple terms, an introvert is someone who gets their energy from alone time.",
+      "They tend to find social interaction draining, even if they enjoy it.",
+      "Extroverts are the opposite — they get their energy from being around other people.",
+      "The concept was popularized by Swiss psychiatrist Carl Jung in the 1920s.",
+      "He believed that everyone leans toward one of these personality types.",
+      "But most modern psychologists say it's more of a spectrum than a binary distinction.",
+      "That makes sense. I feel like different situations bring out different sides of people.",
+      "Absolutely. The key thing is not whether you like socializing, but how it affects your energy.",
+      "Research suggests that introverts make up between 30 and 50 percent of the population.",
+      "But in many Western cultures, extroversion is seen as more desirable.",
+      "There's often pressure to be outgoing, sociable, and assertive.",
+      "Susan Cain's bestselling book 'Quiet' argued that we undervalue introverts.",
+      "She pointed out that many of history's greatest thinkers and creators were introverts.",
+      "Einstein, Newton, JK Rowling, and even Barack Obama have been described as introverts.",
+      "Of course, being introverted doesn't mean you're shy or antisocial.",
+      "Many introverts are excellent public speakers — they just need to recharge afterwards.",
+      "And extroverts can learn to be more reflective and listen more carefully.",
+      "Understanding where you fall on the spectrum can help you design your life accordingly.",
+      "Introverts may thrive working from home. Extroverts may need an office environment.",
+      "The important thing is knowing yourself and not trying to be something you're not.",
+      "That's all for today's 6 Minute English. Join us again next time!"
+    ]
+  },
+  { id:'v15', title:'BBC 6 Minute English — Is working from home good for you?', src:'BBC', diff:'medium',
+    yt:'https://www.youtube.com/embed/sz_SHcBEBOE',
+    subtitles:[
+      "Hello and welcome to 6 Minute English from BBC Learning English.",
+      "Today we're asking: is working from home actually good for you?",
+      "Since the pandemic, millions of people around the world began working from home.",
+      "For many, it seemed like a dream: no commute, flexible hours, and more comfort.",
+      "But research is now revealing a more complicated picture.",
+      "First, let's talk about the benefits.",
+      "Working from home saves time — the commute can take hours out of your day.",
+      "Research shows the average UK worker spends nearly an hour commuting each day.",
+      "That's time you could spend exercising, sleeping, or with your family.",
+      "Working from home also reduces stress associated with busy offices and noisy environments.",
+      "And people often report being more productive at home, without office interruptions.",
+      "But it's not all positive. What are the downsides?",
+      "The biggest challenge for many home workers is loneliness and isolation.",
+      "We are social creatures, and we need regular human interaction.",
+      "Without the casual conversations and social interactions of an office, people can feel cut off.",
+      "There's also the problem of boundaries — when your home is your office, it's hard to switch off.",
+      "Studies show that remote workers often work longer hours than those in an office.",
+      "They respond to emails at night and on weekends, blurring the line between work and rest.",
+      "This can lead to burnout — a state of chronic stress and exhaustion.",
+      "For parents, working from home while caring for children can be particularly challenging.",
+      "Many workers have also missed out on learning from colleagues and career opportunities.",
+      "Younger workers especially benefit from being around experienced colleagues in an office.",
+      "A growing trend is the hybrid model — splitting time between home and office.",
+      "This approach seems to offer the best of both worlds: flexibility and social connection.",
+      "Many employers are now offering two or three days from home and the rest in the office.",
+      "The right balance will depend on the individual, the job, and the company culture.",
+      "What's clear is that working from home is here to stay in some form.",
+      "And organizations need to think carefully about how to make it work for everyone."
+    ]
+  },
+  { id:'v16', title:'BBC 6 Minute English — How social media is changing language', src:'BBC', diff:'hard',
+    yt:'https://www.youtube.com/embed/JlpN0OAFnbw',
+    subtitles:[
+      "Hello and welcome to 6 Minute English. I'm Beth, and I'm joined today by Neil.",
+      "Today we're talking about how social media is changing the English language.",
+      "Neil, do you think social media is making language better or worse?",
+      "That's a controversial question. I'd say it's making language more diverse.",
+      "Language has always changed over time — that's not new.",
+      "But social media has dramatically accelerated the speed at which language evolves.",
+      "Words like 'selfie', 'hashtag', 'trending', and 'viral' didn't exist 20 years ago.",
+      "And yet they're now completely standard parts of the English vocabulary.",
+      "Linguists call new words that enter the language 'neologisms'.",
+      "And social media is producing neologisms at a remarkable rate.",
+      "Platform-specific language is also emerging. Twitter gave us the 'tweet' and the 'retweet'.",
+      "TikTok has introduced concepts like 'going viral' in a new, more intense way.",
+      "Instagram gave us 'story', 'reel', and a whole new visual vocabulary.",
+      "But it's not just new words. Grammar is changing too.",
+      "On Twitter, the character limit encouraged creative compression and abbreviation.",
+      "People started using capital letters for emphasis IN THE MIDDLE OF sentences.",
+      "Punctuation became expressive. A full stop at the end of a text message can seem aggressive.",
+      "Emoji have become a kind of universal, cross-cultural language.",
+      "They add tone and emotion to digital communication in ways that words alone can't.",
+      "Some academics worry that social media is harming young people's writing skills.",
+      "They argue that text speak is making people less able to write formally.",
+      "But research suggests the opposite may be true.",
+      "People who are active on social media often develop a sophisticated ability to switch between styles.",
+      "They can write formally when the situation demands it,",
+      "and switch to informal language effortlessly in social contexts.",
+      "Linguists call this 'code-switching' — and it's actually a sign of linguistic intelligence.",
+      "Language isn't degrading. It's diversifying.",
+      "In the digital age, we're all becoming more aware of the power and flexibility of language.",
+      "And that has to be a good thing for communication."
     ]
   }
 ];
 
+/* ─────────────── WORD DATABASE ─────────────── */
 const WORDDB = {
   assume:['əˈsjuːm','v. 假设，假定','认为某事为真，但未经证实'],
+  achieve:['əˈtʃiːv','v. 实现，达到','通过努力成功完成某事'],
   innovative:['ˌɪnəˈveɪtɪv','adj. 创新的，革新的','引入新方法或新想法的'],
+  talent:['ˈtælənt','n. 才能；人才','天生的技能或能力'],
   extraordinary:['ɪkˈstrɔːdɪneri','adj. 非凡的，不同寻常的','远超普通标准的'],
   creativity:['ˌkriːeɪˈtɪvɪti','n. 创造力','产生新颖想法或事物的能力'],
   procrastinator:['prəˈkræstɪneɪtər','n. 拖延者','习惯推迟任务的人'],
@@ -382,273 +997,340 @@ const WORDDB = {
   commitment:['kəˈmɪtmənt','n. 承诺；投入','坚定地去做某事的誓言'],
   emissions:['ɪˈmɪʃənz','n. 排放物（复数）','尤指工业或车辆产生的气体'],
   deprivation:['ˌdeprɪˈveɪʃən','n. 剥夺；匮乏','缺少必要或想要的东西'],
-  talent:['ˈtælənt','n. 才能；人才','天生的技能或能力'],
-  compete:['kəmˈpiːt','v. 竞争','为争取某物与他人对抗'],
-  achieve:['əˈtʃiːv','v. 实现，达到','通过努力成功完成某事'],
+  vulnerability:['ˌvʌlnərəˈbɪlɪti','n. 脆弱性；易受伤性','容易受到伤害或批评的状态'],
+  authenticity:['ˌɔːθenˈtɪsɪti','n. 真实性，真诚','真实而非伪装的品质'],
+  autonomy:['ɔːˈtɒnəmi','n. 自主权，自治','独立行动和做决定的权利'],
+  mastery:['ˈmɑːstəri','n. 精通；掌握','对某项技能的完全控制或专业知识'],
+  purpose:['ˈpɜːpəs','n. 目的；意义','做某事的原因或意图'],
+  motivation:['ˌməʊtɪˈveɪʃən','n. 动力，激励','促使人采取行动的力量'],
+  resilience:['rɪˈzɪliəns','n. 韧性，恢复力','快速从困难中恢复的能力'],
+  optimism:['ˈɒptɪmɪzəm','n. 乐观主义','相信事情会变好的倾向'],
+  productivity:['ˌprɒdʌkˈtɪvɪti','n. 生产力，效率','产出与投入的比率'],
+  stereotype:['ˈsteriətaɪp','n. 刻板印象','对某类人或事物过于简单的固定看法'],
+  perspective:['pəˈspektɪv','n. 观点，视角','看待或考虑某事的特定方式'],
+  connection:['kəˈnekʃən','n. 联系，关系','人与人之间的情感纽带'],
+  loneliness:['ˈləʊnlinəs','n. 孤独感','因缺乏陪伴而产生的悲伤感'],
+  commute:['kəˈmjuːt','v./n. 通勤','定期往返于住所和工作地点'],
+  neologism:['niˈɒlədʒɪzəm','n. 新词，新造词','语言中新出现的词汇或表达'],
+  evolve:['ɪˈvɒlv','v. 演变，进化','逐渐发展变化'],
+  imperfect:['ɪmˈpɜːfɪkt','adj. 不完美的，有缺陷的','未达到完美标准的状态'],
+  belonging:['bɪˈlɒŋɪŋ','n. 归属感','感觉自己是某个群体一部分的感觉'],
+  worthiness:['ˈwɜːðinəs','n. 价值感，有价值的品质','被认为有价值或值得尊重的状态'],
+  courage:['ˈkʌrɪdʒ','n. 勇气，勇敢','在面对恐惧时仍采取行动的能力'],
+  incentive:['ɪnˈsentɪv','n. 激励，动机','促使人去做某事的事物'],
+  cognitive:['ˈkɒɡnɪtɪv','adj. 认知的','与思维、学习和理解相关的'],
+  confidence:['ˈkɒnfɪdəns','n. 自信，信心','相信自己能力的状态'],
+  expand:['ɪkˈspænd','v. 扩展，扩张','变得更大或更广泛'],
+  narrative:['ˈnærətɪv','n. 叙述，故事','一系列相连的事件描述'],
+  stereotype:['ˈsteriətaɪp','n. 刻板印象','对某类人过于简单化的固定看法'],
+  circadian:['sɜːˈkeɪdiən','adj. 昼夜节律的','与24小时生物钟相关的'],
+  melatonin:['ˌmeləˈtəʊnɪn','n. 褪黑素','控制睡眠周期的激素'],
+  consolidation:['kənˌsɒlɪˈdeɪʃən','n. 巩固，强化','将信息固化到长期记忆的过程'],
 };
 
+/* ─────────────── STATE ─────────────── */
 let currentFilter='all', currentSrc='all';
 let selectedVideo=null, showSub=true;
 let isRecording=false, recTimer=null, recSeconds=0;
-let vocab=JSON.parse(localStorage.getItem('sr_vocab')||'[]');
 let subIdx=0, autoTimer=null, autoPlaying=false;
 let quizAnswered=false, correctCount=0, totalCount=0;
+let currentWord=null, currentWordDef=null;
 
-function saveVocab(){
-  localStorage.setItem('sr_vocab',JSON.stringify(vocab));
-  document.getElementById('vocab-cnt').textContent=vocab.length;
-  document.getElementById('vocab-total').textContent=vocab.length+' 个单词';
+function loadVocab() {
+  try { return JSON.parse(localStorage.getItem('sr_vocab') || '[]'); } catch(e) { return []; }
+}
+let vocab = loadVocab();
+
+function saveVocab() {
+  try { localStorage.setItem('sr_vocab', JSON.stringify(vocab)); } catch(e) {}
+  document.getElementById('vocab-cnt').textContent = vocab.length;
+  document.getElementById('vocab-total').textContent = vocab.length + ' 个单词';
 }
 
-function switchTab(t,btn){
-  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ─────────────── TABS & FILTERS ─────────────── */
+function switchTab(t, btn) {
+  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  document.getElementById('tab-practice').classList.toggle('hidden',t!=='practice');
-  document.getElementById('tab-vocab').classList.toggle('hidden',t!=='vocab');
-  if(t==='vocab'){renderVocab();renderQuiz();}
+  document.getElementById('tab-practice').classList.toggle('hidden', t !== 'practice');
+  document.getElementById('tab-vocab').classList.toggle('hidden', t !== 'vocab');
+  if (t === 'vocab') { renderVocab(); renderQuiz(); }
 }
 
-function setFilter(f,btn){
-  currentFilter=f;
-  document.querySelectorAll('.chip.c-all,.chip.c-easy,.chip.c-medium,.chip.c-hard').forEach(b=>{
-    if(['全部','简单','中等','困难'].some(l=>b.textContent.trim()===l))b.classList.remove('active');
+function setFilter(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('.chip').forEach(b => {
+    if (['全部','简单','中等','困难'].some(l => b.textContent.trim() === l)) b.classList.remove('active');
   });
   btn.classList.add('active');
   renderList();
 }
 
-function setSrc(s,btn){
-  currentSrc=s;
-  ['src-all','src-ted','src-bbc'].forEach(id=>document.getElementById(id).classList.remove('active'));
+function setSrc(s, btn) {
+  currentSrc = s;
+  ['src-all','src-ted','src-bbc'].forEach(id => document.getElementById(id).classList.remove('active'));
   btn.classList.add('active');
   renderList();
 }
 
-function renderList(){
-  const list=document.getElementById('video-list');
-  const filtered=VIDEOS.filter(v=>{
-    if(currentFilter!=='all'&&v.diff!==currentFilter)return false;
-    if(currentSrc!=='all'&&v.src!==currentSrc)return false;
+/* ─────────────── VIDEO LIST ─────────────── */
+function renderList() {
+  const list = document.getElementById('video-list');
+  const filtered = VIDEOS.filter(v => {
+    if (currentFilter !== 'all' && v.diff !== currentFilter) return false;
+    if (currentSrc !== 'all' && v.src !== currentSrc) return false;
     return true;
   });
-  if(!filtered.length){
-    list.innerHTML='<div class="empty-state"><i class="ti ti-video-off" style="font-size:32px;display:block;margin-bottom:8px"></i>没有符合筛选条件的视频</div>';
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty-state"><i class="ti ti-video-off" style="font-size:32px;display:block;margin-bottom:8px"></i>没有符合筛选条件的视频</div>';
     return;
   }
-  const dLabel={easy:'简单',medium:'中等',hard:'困难'};
-  list.innerHTML=filtered.map(v=>`
-    <div class="video-item ${selectedVideo&&selectedVideo.id===v.id?'selected':''}" onclick="selectVideo('${v.id}')">
+  const dLabel = { easy:'简单', medium:'中等', hard:'困难' };
+  list.innerHTML = filtered.map(v => `
+    <div class="video-item${selectedVideo && selectedVideo.id === v.id ? ' selected' : ''}" onclick="selectVideo('${v.id}')">
       <i class="ti ti-brand-youtube" style="font-size:24px;color:${v.src==='TED'?'#cc0000':'#185fa5'};flex-shrink:0"></i>
       <div class="vi-info">
-        <div class="vi-title">${v.title}</div>
-        <div class="vi-meta">${v.src}</div>
+        <div class="vi-title">${esc(v.title)}</div>
+        <div class="vi-meta">${esc(v.src)} · ${v.subtitles.length} 句</div>
       </div>
       <span class="diff-badge diff-${v.diff}">${dLabel[v.diff]}</span>
     </div>`).join('');
 }
 
-function selectVideo(id){
-  selectedVideo=VIDEOS.find(v=>v.id===id);
-  subIdx=0;
+/* ─────────────── PLAYER ─────────────── */
+function selectVideo(id) {
+  selectedVideo = VIDEOS.find(v => v.id === id);
+  subIdx = 0;
   stopAuto();
-  document.getElementById('player-card').style.display='block';
-  document.getElementById('yt-frame').src=selectedVideo.yt+'?rel=0';
+  closeWordDetail();
+  document.getElementById('player-card').style.display = 'block';
+  document.getElementById('yt-frame').src = selectedVideo.yt + '?rel=0';
   document.getElementById('score-bar').classList.remove('visible');
   renderList();
-  showSubLine();
+  renderSubtitles();
 }
 
-function showSubLine(){
-  if(!selectedVideo)return;
-  const subs=selectedVideo.subtitles;
-  document.getElementById('sub-pos').textContent=(subIdx+1)+' / '+subs.length;
-  const line=subs[subIdx];
-  const el=document.getElementById('subtitle-line');
-  el.className='subtitle-line'+(showSub?'':' hidden-sub');
-  el.innerHTML=line.split(/(\s+)/).map(token=>{
-    const word=token.replace(/[^a-zA-Z']/g,'').toLowerCase();
-    if(!word)return token;
-    const inV=vocab.some(v=>v.word===word);
-    return `<span class="word${inV?' in-vocab':''}" onclick="showWordPopup(event,'${word}')">${token}</span>`;
+/* ─────────────── SUBTITLES ─────────────── */
+function renderSubtitles() {
+  if (!selectedVideo) return;
+  const subs = selectedVideo.subtitles;
+  document.getElementById('sub-pos').textContent = (subIdx + 1) + ' / ' + subs.length;
+
+  const scrollEl = document.getElementById('subtitle-scroll');
+  scrollEl.innerHTML = subs.map((line, i) => {
+    if (i === subIdx) {
+      // Active line: words are clickable — word is pure a-z after strip, safe for onclick
+      const wordHtml = line.split(/(\s+)/).map(token => {
+        const word = token.replace(/[^a-zA-Z]/g, '').toLowerCase();
+        if (!word) return esc(token);
+        const inV = vocab.some(v => v.word === word);
+        return `<span class="word${inV ? ' in-vocab' : ''}" onclick="wordClick('${word}')">${esc(token)}</span>`;
+      }).join('');
+      return `<div class="sub-line active" data-idx="${i}">${wordHtml}</div>`;
+    }
+    return `<div class="sub-line" data-idx="${i}" onclick="jumpToLine(${i})">${esc(line)}</div>`;
   }).join('');
+
+  const activeLine = scrollEl.querySelector('.sub-line.active');
+  if (activeLine) activeLine.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 }
 
-function prevSub(){subIdx=Math.max(0,subIdx-1);showSubLine();}
-function nextSub(){
-  if(!selectedVideo)return;
-  subIdx=Math.min(selectedVideo.subtitles.length-1,subIdx+1);
-  showSubLine();
-}
-function autoPlay(){
-  if(autoPlaying){stopAuto();return;}
-  autoPlaying=true;
-  document.getElementById('auto-btn').textContent='⏸ 暂停自动';
-  autoTimer=setInterval(()=>{
-    if(subIdx>=selectedVideo.subtitles.length-1){stopAuto();return;}
-    subIdx++;showSubLine();
-  },5000);
-}
-function stopAuto(){
-  autoPlaying=false;
-  clearInterval(autoTimer);
-  document.getElementById('auto-btn').textContent='▶ 自动播放';
+function jumpToLine(i) {
+  if (i !== subIdx) { subIdx = i; renderSubtitles(); }
 }
 
-function toggleSub(){
-  showSub=!showSub;
-  document.getElementById('sub-toggle-btn').innerHTML=`<i class="ti ti-subtitles"></i> 字幕：${showSub?'显示':'隐藏'}`;
-  showSubLine();
+function prevSub() { subIdx = Math.max(0, subIdx - 1); renderSubtitles(); }
+function nextSub() {
+  if (!selectedVideo) return;
+  subIdx = Math.min(selectedVideo.subtitles.length - 1, subIdx + 1);
+  renderSubtitles();
 }
 
-function showWordPopup(e,word){
-  e.stopPropagation();
-  const info=WORDDB[word]||['/wɜːd/','释义暂无，可添加到生词本自行标注',''];
-  const inV=vocab.some(v=>v.word===word);
-  const pop=document.getElementById('word-popup');
-  pop.style.display='block';
-  pop.innerHTML=`
-    <div class="wp-word">${word}</div>
-    <div class="wp-phonetic">${info[0]}</div>
-    <div class="wp-def">${info[1]}</div>
-    <div class="wp-actions">
-      <button class="wp-btn ${inV?'added':''}" onclick="addToVocab('${word}','${info[1]}',this)">
-        <i class="ti ti-${inV?'check':'plus'}"></i> ${inV?'已添加':'加入生词本'}
-      </button>
-    </div>`;
-  const rect=e.target.getBoundingClientRect();
-  const left=Math.min(rect.left+window.scrollX,window.innerWidth+window.scrollX-290);
-  pop.style.left=left+'px';
-  pop.style.top=(rect.bottom+window.scrollY+6)+'px';
+function autoPlay() {
+  if (autoPlaying) { stopAuto(); return; }
+  autoPlaying = true;
+  document.getElementById('auto-btn').textContent = '⏸ 暂停自动';
+  autoTimer = setInterval(() => {
+    if (subIdx >= selectedVideo.subtitles.length - 1) { stopAuto(); return; }
+    subIdx++; renderSubtitles();
+  }, 5000);
+}
+function stopAuto() {
+  autoPlaying = false; clearInterval(autoTimer);
+  document.getElementById('auto-btn').textContent = '▶ 自动播放';
 }
 
-document.addEventListener('click',e=>{
-  if(!e.target.closest('.word-popup')&&!e.target.closest('.word'))
-    document.getElementById('word-popup').style.display='none';
-});
-
-function addToVocab(word,def,btn){
-  if(!vocab.some(v=>v.word===word)){
-    vocab.push({word,def,added:new Date().toLocaleDateString('zh-CN')});
-    saveVocab();
-    showSubLine();
-  }
-  btn.className='wp-btn added';
-  btn.innerHTML='<i class="ti ti-check"></i> 已添加';
+function toggleSub() {
+  showSub = !showSub;
+  document.getElementById('sub-toggle-btn').innerHTML = `<i class="ti ti-subtitles"></i> 字幕：${showSub ? '显示' : '隐藏'}`;
+  document.getElementById('subtitle-scroll').classList.toggle('hidden-sub', !showSub);
 }
 
-function toggleRec(){
-  if(!isRecording){
-    navigator.mediaDevices.getUserMedia({audio:true}).then(stream=>{
-      isRecording=true;
-      window._recStream=stream;
-      const btn=document.getElementById('rec-btn');
-      btn.classList.add('recording');
-      btn.innerHTML='<i class="ti ti-square"></i> 停止跟读';
-      recSeconds=0;
-      document.getElementById('rec-timer').textContent='0:00';
-      recTimer=setInterval(()=>{
-        recSeconds++;
-        const m=Math.floor(recSeconds/60),s=recSeconds%60;
-        document.getElementById('rec-timer').textContent=m+':'+(s<10?'0':'')+s;
-      },1000);
-      window._recAutoStop=setTimeout(()=>{if(isRecording)stopRec();},60000);
-    }).catch(()=>alert('请允许麦克风权限以启用跟读功能。\n（在浏览器地址栏左侧点击锁图标→允许麦克风）'));
+/* ─────────────── WORD DETAIL (replaces popup) ─────────────── */
+function wordClick(word) {
+  const info = WORDDB[word] || ['/wɜːd/', '暂无内置释义，可自行添加到生词本', ''];
+  currentWord = word;
+  currentWordDef = info[1];
+
+  document.getElementById('wd-word').textContent = word;
+  document.getElementById('wd-phonetic').textContent = info[0];
+  document.getElementById('wd-def').textContent = info[1];
+  document.getElementById('wd-longdef').textContent = info[2] || '';
+
+  // Show context sentence with the word highlighted
+  const ctxEl = document.getElementById('wd-context');
+  if (selectedVideo && selectedVideo.subtitles[subIdx]) {
+    const line = selectedVideo.subtitles[subIdx];
+    const escaped = esc(line);
+    // Case-insensitive highlight of the word in context
+    const highlighted = escaped.replace(
+      new RegExp('(?<![a-zA-Z])(' + word + ')(?![a-zA-Z])', 'gi'),
+      '<mark>$1</mark>'
+    );
+    ctxEl.innerHTML = '“' + highlighted + '”';
+    ctxEl.classList.remove('hidden');
   } else {
-    stopRec();
+    ctxEl.classList.add('hidden');
   }
+
+  // Update add button state
+  const addBtn = document.getElementById('wd-add-btn');
+  const inV = vocab.some(v => v.word === word);
+  if (inV) {
+    addBtn.innerHTML = '<i class="ti ti-check"></i> 已在生词本';
+    addBtn.classList.add('added');
+  } else {
+    addBtn.innerHTML = '<i class="ti ti-plus"></i> 加入生词本';
+    addBtn.classList.remove('added');
+  }
+
+  // Show word detail panel, hide subtitle scroll and nav
+  document.getElementById('sub-nav').style.display = 'none';
+  document.getElementById('subtitle-scroll').style.display = 'none';
+  document.getElementById('word-detail').classList.remove('hidden');
 }
 
-function stopRec(){
-  isRecording=false;
-  clearInterval(recTimer);
-  clearTimeout(window._recAutoStop);
-  if(window._recStream)window._recStream.getTracks().forEach(t=>t.stop());
-  const btn=document.getElementById('rec-btn');
+function closeWordDetail() {
+  document.getElementById('word-detail').classList.add('hidden');
+  document.getElementById('subtitle-scroll').style.display = '';
+  document.getElementById('sub-nav').style.display = '';
+}
+
+function addCurrentWord(btn) {
+  if (!currentWord) return;
+  if (!vocab.some(v => v.word === currentWord)) {
+    vocab.push({ word: currentWord, def: currentWordDef, added: new Date().toLocaleDateString('zh-CN') });
+    saveVocab();
+    renderSubtitles(); // refresh so the word shows as in-vocab when user returns
+  }
+  btn.innerHTML = '<i class="ti ti-check"></i> 已添加到生词本';
+  btn.classList.add('added');
+}
+
+/* ─────────────── RECORDING ─────────────── */
+function toggleRec() {
+  if (!isRecording) {
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      isRecording = true; window._recStream = stream;
+      const btn = document.getElementById('rec-btn');
+      btn.classList.add('recording');
+      btn.innerHTML = '<i class="ti ti-square"></i> 停止跟读';
+      recSeconds = 0;
+      document.getElementById('rec-timer').textContent = '0:00';
+      recTimer = setInterval(() => {
+        recSeconds++;
+        const m = Math.floor(recSeconds / 60), s = recSeconds % 60;
+        document.getElementById('rec-timer').textContent = m + ':' + (s < 10 ? '0' : '') + s;
+      }, 1000);
+      window._recAutoStop = setTimeout(() => { if (isRecording) stopRec(); }, 60000);
+    }).catch(() => alert('请允许麦克风权限以启用跟读功能。'));
+  } else { stopRec(); }
+}
+
+function stopRec() {
+  isRecording = false; clearInterval(recTimer); clearTimeout(window._recAutoStop);
+  if (window._recStream) window._recStream.getTracks().forEach(t => t.stop());
+  const btn = document.getElementById('rec-btn');
   btn.classList.remove('recording');
-  btn.innerHTML='<i class="ti ti-microphone"></i> 开始跟读';
-  document.getElementById('rec-timer').textContent='';
+  btn.innerHTML = '<i class="ti ti-microphone"></i> 开始跟读';
+  document.getElementById('rec-timer').textContent = '';
   showScore();
 }
 
-function showScore(){
-  const range={easy:[75,95],medium:[62,85],hard:[50,78]};
-  const d=selectedVideo?range[selectedVideo.diff]:[60,90];
-  const score=Math.round(d[0]+Math.random()*(d[1]-d[0]));
-  const stars=score>=88?'★★★★★':score>=75?'★★★★☆':score>=60?'★★★☆☆':'★★☆☆☆';
-  const msg=score>=88?'发音流利，语调自然，继续保持！':
-            score>=75?'整体不错，注意个别音节的发音':
-            score>=60?'继续练习，多注意连读和语调变化':'建议先多听几遍，再开始跟读';
-  const bar=document.getElementById('score-bar');
-  bar.classList.add('visible');
-  document.getElementById('score-num').textContent=score+'分';
-  document.getElementById('score-stars').textContent=stars;
-  document.getElementById('score-detail').textContent=msg;
+function showScore() {
+  const range = { easy:[75,95], medium:[62,85], hard:[50,78] };
+  const d = selectedVideo ? range[selectedVideo.diff] : [60, 90];
+  const score = Math.round(d[0] + Math.random() * (d[1] - d[0]));
+  const stars = score>=88?'★★★★★':score>=75?'★★★★☆':score>=60?'★★★☆☆':'★★☆☆☆';
+  const msg = score>=88?'发音流利，语调自然，继续保持！':score>=75?'整体不错，注意个别音节的发音':score>=60?'继续练习，多注意连读和语调变化':'建议先多听几遍，再开始跟读';
+  document.getElementById('score-bar').classList.add('visible');
+  document.getElementById('score-num').textContent = score + '分';
+  document.getElementById('score-stars').textContent = stars;
+  document.getElementById('score-detail').textContent = msg;
 }
 
-function renderVocab(){
-  const list=document.getElementById('vocab-list');
-  if(!vocab.length){
-    list.innerHTML='<div class="empty-state"><i class="ti ti-books" style="font-size:36px;display:block;margin-bottom:10px"></i>生词本还是空的<br>在字幕中点击单词即可添加</div>';
+/* ─────────────── VOCAB TAB ─────────────── */
+function renderVocab() {
+  const list = document.getElementById('vocab-list');
+  if (!vocab.length) {
+    list.innerHTML = '<div class="empty-state"><i class="ti ti-books" style="font-size:36px;display:block;margin-bottom:10px"></i>生词本还是空的<br>点击字幕中的单词即可添加</div>';
     return;
   }
-  list.innerHTML=vocab.map((v,i)=>`
+  list.innerHTML = vocab.map((v, i) => `
     <div class="vocab-item">
-      <div>
-        <div class="vocab-word">${v.word}</div>
-        <div class="vocab-date">${v.added}</div>
-      </div>
-      <div class="vocab-def">${v.def}</div>
-      <button class="vocab-del" onclick="removeVocab(${i})" aria-label="删除 ${v.word}">
-        <i class="ti ti-trash"></i>
-      </button>
+      <div><div class="vocab-word">${esc(v.word)}</div><div class="vocab-date">${esc(v.added)}</div></div>
+      <div class="vocab-def">${esc(v.def)}</div>
+      <button class="vocab-del" data-i="${i}" aria-label="删除"><i class="ti ti-trash"></i></button>
     </div>`).join('');
-}
-
-function removeVocab(i){
-  vocab.splice(i,1);
-  saveVocab();
-  renderVocab();
-  renderQuiz();
-  showSubLine();
-}
-
-function renderQuiz(){
-  const wrap=document.getElementById('quiz-wrap');
-  if(vocab.length<4){wrap.classList.add('hidden');return;}
-  wrap.classList.remove('hidden');
-  correctCount=0;totalCount=0;
-  nextQuiz();
-}
-
-function nextQuiz(){
-  if(vocab.length<4)return;
-  quizAnswered=false;
-  document.getElementById('quiz-result').textContent=totalCount?`已答 ${totalCount} 题，正确 ${correctCount} 题`:'';
-  const qi=Math.floor(Math.random()*vocab.length);
-  const correct=vocab[qi];
-  const others=vocab.filter((_,i)=>i!==qi).sort(()=>Math.random()-.5).slice(0,3);
-  const opts=[correct,...others].sort(()=>Math.random()-.5);
-  document.getElementById('quiz-q').textContent='"'+correct.word+'" 的意思是？';
-  document.getElementById('quiz-opts').innerHTML=opts.map(o=>`
-    <button class="quiz-opt" onclick="answerQuiz(this,'${o.word}','${correct.word}')">${o.def}</button>`).join('');
-}
-
-function answerQuiz(btn,chosen,correct){
-  if(quizAnswered)return;
-  quizAnswered=true;
-  totalCount++;
-  if(chosen===correct)correctCount++;
-  document.querySelectorAll('.quiz-opt').forEach(b=>{
-    const w=b.getAttribute('onclick').match(/'([^']+)'/g);
-    if(w&&w[1]&&w[1].replace(/'/g,'')===''+correct)b.classList.add('correct');
+  list.querySelectorAll('.vocab-del').forEach(btn => {
+    btn.onclick = () => removeVocab(parseInt(btn.dataset.i));
   });
-  if(chosen!==correct)btn.classList.add('wrong');
-  document.getElementById('quiz-result').textContent=`已答 ${totalCount} 题，正确 ${correctCount} 题`;
 }
 
+function removeVocab(i) {
+  vocab.splice(i, 1); saveVocab(); renderVocab(); renderQuiz(); renderSubtitles();
+}
+
+/* ─────────────── QUIZ ─────────────── */
+function renderQuiz() {
+  const wrap = document.getElementById('quiz-wrap');
+  if (vocab.length < 4) { wrap.classList.add('hidden'); return; }
+  wrap.classList.remove('hidden'); correctCount = 0; totalCount = 0; nextQuiz();
+}
+
+function nextQuiz() {
+  if (vocab.length < 4) return;
+  quizAnswered = false;
+  document.getElementById('quiz-result').textContent = totalCount ? `已答 ${totalCount} 题，正确 ${correctCount} 题` : '';
+  const qi = Math.floor(Math.random() * vocab.length);
+  const correct = vocab[qi];
+  const others = vocab.filter((_, i) => i !== qi).sort(() => Math.random() - .5).slice(0, 3);
+  const opts = [correct, ...others].sort(() => Math.random() - .5);
+  document.getElementById('quiz-q').textContent = '"' + correct.word + '" 的意思是？';
+  const optsEl = document.getElementById('quiz-opts');
+  optsEl.innerHTML = opts.map(o => `<button class="quiz-opt" data-word="${esc(o.word)}">${esc(o.def)}</button>`).join('');
+  optsEl.querySelectorAll('.quiz-opt').forEach(btn => {
+    btn.onclick = () => answerQuiz(btn, btn.dataset.word, correct.word);
+  });
+}
+
+function answerQuiz(btn, chosen, correctWord) {
+  if (quizAnswered) return;
+  quizAnswered = true; totalCount++;
+  if (chosen === correctWord) correctCount++;
+  document.querySelectorAll('.quiz-opt').forEach(b => {
+    if (b.dataset.word === correctWord) b.classList.add('correct');
+  });
+  if (chosen !== correctWord) btn.classList.add('wrong');
+  document.getElementById('quiz-result').textContent = `已答 ${totalCount} 题，正确 ${correctCount} 题`;
+}
+
+/* ─────────────── INIT ─────────────── */
 saveVocab();
 renderList();
 </script>
-
-
-</body></html>
+</body>
+</html>
