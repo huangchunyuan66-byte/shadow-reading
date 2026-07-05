@@ -262,7 +262,7 @@
 /* ─────────────── VIDEO DATA ─────────────── */
 const VIDEOS = [
   { id:'v1', title:'How great leaders inspire action', src:'TED', diff:'easy',
-    yt:'https://www.youtube.com/embed/qp0HIF3SfI4',
+    yt:'https://embed.ted.com/talks/simon_sinek_how_great_leaders_inspire_action',
     subtitles:[
       "How do you explain when things don't go as we assume?",
       "Or better, how do you explain when others are able to achieve things that seem to defy all of the assumptions?",
@@ -324,7 +324,7 @@ const VIDEOS = [
     ]
   },
   { id:'v3', title:'The danger of a single story', src:'TED', diff:'medium',
-    yt:'https://www.youtube.com/embed/D9Ihs241zeg',
+    yt:'https://embed.ted.com/talks/chimamanda_ngozi_adichie_the_danger_of_a_single_story',
     subtitles:[
       "I'm a storyteller. And I would like to tell you a few personal stories about what I like to call the danger of the single story.",
       "I grew up on a university campus in eastern Nigeria.",
@@ -375,7 +375,7 @@ const VIDEOS = [
     ]
   },
   { id:'v5', title:'Do schools kill creativity?', src:'TED', diff:'hard',
-    yt:'https://www.youtube.com/embed/iG9CE55wbtY',
+    yt:'https://embed.ted.com/talks/ken_robinson_says_schools_kill_creativity',
     subtitles:[
       "Good morning. How are you? It's been great, hasn't it? I've been blown away by the whole thing.",
       "There have been three themes running through this conference which are relevant to what I want to talk about.",
@@ -439,7 +439,7 @@ const VIDEOS = [
     ]
   },
   { id:'v6', title:'Inside the mind of a master procrastinator', src:'TED', diff:'hard',
-    yt:'https://www.youtube.com/embed/arj7oStGLkU',
+    yt:'https://embed.ted.com/talks/tim_urban_inside_the_mind_of_a_master_procrastinator',
     subtitles:[
       "So in college, I was a government major, which means I had to write a lot of papers.",
       "When a normal person has to write a paper, they might be stressed out about it.",
@@ -494,7 +494,7 @@ const VIDEOS = [
     ]
   },
   { id:'v7', title:'Your body language may shape who you are', src:'TED', diff:'easy',
-    yt:'https://www.youtube.com/embed/rE3j_RHkqwc',
+    yt:'https://embed.ted.com/talks/amy_cuddy_your_body_language_shapes_who_you_are',
     subtitles:[
       "I want to talk to you about something that has probably already happened to you today.",
       "So I want to ask you right now: How many of you are feeling powerful?",
@@ -536,7 +536,7 @@ const VIDEOS = [
     ]
   },
   { id:'v8', title:'The power of vulnerability', src:'TED', diff:'medium',
-    yt:'https://www.youtube.com/embed/iCvmsMzlF7o',
+    yt:'https://embed.ted.com/talks/brene_brown_the_power_of_vulnerability',
     subtitles:[
       "So a couple years ago, an event planner called me because I was going to do a speaking event.",
       "She said: 'I'm struggling with how to write about you on the little flyer.'",
@@ -583,7 +583,7 @@ const VIDEOS = [
     ]
   },
   { id:'v9', title:'How to speak so that people want to listen', src:'TED', diff:'medium',
-    yt:'https://www.youtube.com/embed/eIho2S0ZahI',
+    yt:'https://embed.ted.com/talks/julian_treasure_how_to_speak_so_that_people_want_to_listen',
     subtitles:[
       "The human voice: it's the instrument we all play.",
       "It's the most powerful sound in the world, probably.",
@@ -628,7 +628,7 @@ const VIDEOS = [
     ]
   },
   { id:'v10', title:'The puzzle of motivation', src:'TED', diff:'hard',
-    yt:'https://www.youtube.com/embed/rrkrvAUbU9Y',
+    yt:'https://embed.ted.com/talks/dan_pink_on_motivation',
     subtitles:[
       "I need to make a confession at the outset here.",
       "A little over 20 years ago, I did something that I'm not particularly proud of.",
@@ -678,7 +678,7 @@ const VIDEOS = [
     ]
   },
   { id:'v11', title:'Try something new for 30 days', src:'TED', diff:'easy',
-    yt:'https://www.youtube.com/embed/UNP03fDpg1U',
+    yt:'https://embed.ted.com/talks/matt_cutts_try_something_new_for_30_days',
     subtitles:[
       "A few years ago, I felt like I was stuck in a rut.",
       "So I decided to follow in the footsteps of the great American philosopher Morgan Spurlock",
@@ -718,7 +718,7 @@ const VIDEOS = [
     ]
   },
   { id:'v12', title:'What makes a good life? Lessons from the longest study on happiness', src:'TED', diff:'medium',
-    yt:'https://www.youtube.com/embed/8KkKuTCFvzI',
+    yt:'https://embed.ted.com/talks/robert_waldinger_what_makes_a_good_life_lessons_from_the_longest_study_on_happiness',
     subtitles:[
       "What keeps us happy and healthy as we go through life?",
       "If you were going to invest now in your future best self, where would you put your time and energy?",
@@ -768,7 +768,7 @@ const VIDEOS = [
     ]
   },
   { id:'v13', title:'The happy secret to better work', src:'TED', diff:'easy',
-    yt:'https://www.youtube.com/embed/GXy__kBVq1M',
+    yt:'https://embed.ted.com/talks/shawn_achor_the_happy_secret_to_better_work',
     subtitles:[
       "When I was seven years old, my sister was two, and we were playing on my bunk bed.",
       "I pushed her off, and she fell and hit the ground.",
@@ -936,7 +936,7 @@ function selectVideo(id) {
   stopAuto();
   closeWordDetail();
   document.getElementById('player-card').style.display = 'block';
-  document.getElementById('yt-frame').src = selectedVideo.yt + '?rel=0';
+  document.getElementById('yt-frame').src = selectedVideo.yt;
   document.getElementById('score-bar').classList.remove('visible');
   renderList();
   renderSubtitles();
